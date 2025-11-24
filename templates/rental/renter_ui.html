@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renter books</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/renter_ui.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+</head>
+<body>
+    
+  <header>
+    <div class="hp_navbar">
+      <img class="hp_navimg" src="{% static 'IMAGES/logo.png' %}">
+    </div>
+    <div class="nav_items">
+      <div class="home hidenav"><a href="http://127.0.0.1:8000/newhome">Home</a></div>
+      <div class="register hidenav"><a href="http://127.0.0.1:8000/search">Search</a></div>
+      <div class="login hidenav"><a href="">MyBooks</a></div>
+      <div class="login hidenav"><a href="">MyProfile</a></div>
+      <div class="menu_button" onclick= showSidebar() ><a href="#"><i class="fa-solid fa-list"></i></a></div>
+    </div>
+  </header>
+
+  <script>
+    function showSidebar(){
+      const sidebar = document.querySelector('.sidebar')
+      sidebar.style.display = 'flex'
+    }
+    function hideSidebar(){
+        const sidebar = document.querySelector('.sidebar')
+        sidebar.style.display = 'none'
+    }
+  </script>
+
+   <header class="res_nav sidebar">
+    <div class="r_navbar">
+     <p onclick=hideSidebar()> <i class="fa-solid fa-xmark"></i></p>
+    </div>
+    <div >
+     <ul class="bar"> 
+      <li class="home"><a href="http://127.0.0.1:8000/newhome">Home</a></li>
+      <li class="register"><a href="http://127.0.0.1:8000/search">Search</a></li>
+      <li class="login"><a href="">MyBooks</a></li>
+      <li class="login"><a href="">MyProfile</a></li>
+
+    <ul>
+    </div>
+  </header>
+
+   <section>
+
+      <div class="rui_books">
+            <div class="rui_heading">
+              <div class="h_rui1"><h1 >READERS' PICK-UP SHELF</h1></div>
+              <div class="h_rui2"><p >Why buy when you can explore? Grab your next great read for just a rent away!</p></div>
+            </div>
+        <!-- <div class="book_issued">
+            <div class="items">
+             {% for renter in renter%}
+              <div class="item1">
+                <p>Rent Date: {{renter.rent_date}}</p>
+                <div class="i1">
+                   <p>{{renter.user}}</p> 
+                </div>
+                <div class="i2">
+                    <p>{{renter.book}}</p>
+                </div>
+                <div class="i3">
+                    <p>{{renter.return_date}}</p>
+                </div>
+               </div> 
+               {% endfor %} 
+
+
+
+            </div> -->
+
+  <div class="book_issued">
+    
+    <div class="items">
+        <div class="header">
+            <div class="cell">User</div>
+            <div class="cell">Rent Date</div>
+          
+            <div class="cell">Book</div>
+            <div class="cell">Return Date</div>
+            <div class="cell">Status</div>
+        </div>
+
+        {% for renter in renter %}
+        <div class="item1">
+            <div class="cell">{{ renter.user }}</div>
+            <div class="cell">{{ renter.rent_date }}</div>
+            
+            <div class="cell">{{ renter.book }}</div>
+            <div class="cell">{{ renter.return_date }}</div>
+            <div class="cell">
+                {% if renter.is_returned %}
+                    <div class="returned-box">Returned</div>
+                {% else %}
+                    <form method="POST" action="">
+                     {% csrf_token %}
+                     <input type="hidden" name="renter_id" value="{{ renter.id }}">
+                     <button type="submit" class="return-btn">Return</button>
+                     </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+           
+        </div>
+      </div>
+   </section>
+
+
+     <footer>
+    <div class="contact">
+     <div class="ending1">
+      <div class="i3">
+        <h1>Contact Us</h1>
+      </div>
+      <div class="i4">
+        <h2><i class="fa-solid fa-phone-volume"></i> 9345623180</h2>
+      </div>
+      <div class="i4">
+        <h2><i class="fa-solid fa-envelope"></i> heyylibrary@gmail.com</h2>
+      </div>
+     </div>  
+      <div class="ending2">
+        <div>
+          <img class="hp_navimg" src="{% static 'IMAGES/logo.png' %}">
+        </div>
+        <div class="i5">
+        
+        <div><i class="fa-brands fa-whatsapp"></i></div>
+        <div><i class="fa-brands fa-facebook"></i></div>
+        <div><i class="fa-brands fa-twitter"></i></div>
+      </div>
+    </div>
+    </div>
+  </footer>
+
+</body>
+</html>

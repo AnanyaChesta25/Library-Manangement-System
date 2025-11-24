@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/register.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+<body>
+
+  <header>
+    <div class="hp_navbar">
+      <img class="hp_navimg" src="{% static 'IMAGES/logo.png' %}">
+    </div>
+    <div class="nav_items">
+      <div class="home hidenav"><a href="http://127.0.0.1:8000/">Home</a></div>
+      <div class="register hidenav"><a href="/register">Register</a></div>
+      <div class="login hidenav"><a href="/login">Login</a></div>
+      <div class="menu_button" onclick= showSidebar() ><a href="#"><i class="fa-solid fa-list"></i></a></div>
+    </div>
+  </header>
+
+  <script>
+    function showSidebar(){
+      const sidebar = document.querySelector('.sidebar')
+      sidebar.style.display = 'flex'
+    }
+    function hideSidebar(){
+        const sidebar = document.querySelector('.sidebar')
+        sidebar.style.display = 'none'
+    }
+  </script>
+
+   <header class="res_nav sidebar">
+    <div class="r_navbar">
+     <p onclick=hideSidebar()> <i class="fa-solid fa-xmark"></i></p>
+    </div>
+    <div >
+     <ul class="bar"> 
+      <li class="home"><a href="http://127.0.0.1:8000/">Home</a></li>
+      <li class="register"><a href="/register">Register</a></li>
+      <li class="login"><a href="/login">Login</a></li>
+    <ul>
+    </div>
+  </header>
+
+ 
+  <!-- {% comment %} <div class="Register">
+    <div class="R1">
+       <div class="i1">
+         <h1>REGISTER USER</h1>
+       </div>
+       <div class="register_form">
+         <form action="" method="post">
+          {% csrf_token %}
+
+           <div class="i2">
+              <label for="firstname">FirstName</label><br>
+              <input type="text" name="firstname" class="I2" placeholder="Enter your FirstName">
+           </div>
+            <div class="i2">
+              <label for="lastname">LastName</label><br>
+              <input type="text" name="lastname" class="I2" placeholder="Enter your LastName">
+           </div>
+             <div class="i2">
+              <label for="username">UserName</label><br>
+              <input type="text" name="username" class="I2" placeholder="Enter your UserName">
+           </div>
+           <div class="i2">
+              <label for="password">Password</label><br>
+              <input type="password" name="password" class="I2" placeholder="Enter your Password">
+           </div>
+           <div class="role">
+             <label for="role" class="role">Role</label><br>
+            
+             <select name="role" id="role" class="I2">
+               <option value="Borrower">Borrower</option>
+               <option value="Staff">Staff</option>
+               <option value="Authors">Authors</option>
+              
+             
+             </select>
+            
+           </div> 
+           <div class="button">
+            <button type="submit" class="submit">Register</button>
+            <button type="reset" class="reset">Reset</button>
+           
+           </div>
+         </form>
+       </div>
+
+    </div>
+  </div>  {% endcomment %} -->
+
+  <div class="l_register">
+
+     <div class="l_reg_box">
+        <div class="reg_header">
+           <div class="reg_reg">REGISTER</div>
+        </div>
+        <div class="reg_inputs">
+          <form class="reg_form" action="" method="post">
+          {% csrf_token %}
+
+           <div >
+              <label for="firstname">FirstName</label><br>
+              <input class="reg_fn" type="text" name="firstname"  placeholder="Enter your FirstName">
+           </div>
+           <div >
+              <label for="lastname">LastName</label><br>
+              <input class="reg_fn" type="text" name="lastname"  placeholder="Enter your LastName">
+           </div>
+           <div >
+              <label for="username">UserName</label><br>
+              <input class="reg_fn" type="text" name="username"  placeholder="Enter your UserName">
+           </div>
+           <div>
+              <label for="password">Password</label><br>
+              <input class="reg_fn" type="password" name="password"  placeholder="Enter your Password">
+           </div>
+           <div class="role">
+             <label for="role" >Role</label><br>
+            
+             <select class="reg_fn" name="role" id="role" class="I2">
+               <option value="Borrower">Borrower</option>
+               <!-- <option value="Staff">Staff</option>
+               <option value="Authors">Authors</option> -->
+              
+             
+             </select>
+            
+           </div> 
+           <div class="reg_home_for_buttons">
+              <button class="reg_button" type="submit" class="submit">Register</button>
+              <button  class="reg_button" type="reset" class="reset">Reset</button>
+           
+           </div>
+        </div>
+     </div>
+
+  </div>
+
+</body>
+</html>

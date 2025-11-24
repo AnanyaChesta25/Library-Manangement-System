@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+<body>
+ 
+  <header>
+    <div class="hp_navbar">
+      <img class="hp_navimg" src="{% static 'IMAGES/logo.png' %}">
+    </div>
+    <div class="nav_items">
+      <div class="home hidenav"><a href="http://127.0.0.1:8000/">Home</a></div>
+      <div class="register hidenav"><a href="/register">Register</a></div>
+      <div class="login hidenav"><a href="/login">Login</a></div>
+      <div class="menu_button" onclick= showSidebar() ><a href="#"><i class="fa-solid fa-list"></i></a></div>
+    </div>
+  </header>
+
+  <script>
+    function showSidebar(){
+      const sidebar = document.querySelector('.sidebar')
+      sidebar.style.display = 'flex'
+    }
+    function hideSidebar(){
+        const sidebar = document.querySelector('.sidebar')
+        sidebar.style.display = 'none'
+    }
+  </script>
+
+   <header class="res_nav sidebar">
+    <div class="r_navbar">
+     <p onclick=hideSidebar()> <i class="fa-solid fa-xmark"></i></p>
+    </div>
+    <div >
+     <ul class="bar"> 
+      <li class="home"><a href="http://127.0.0.1:8000/">Home</a></li>
+      <li class="register"><a href="/register">Register</a></li>
+      <li class="login"><a href="/login">Login</a></li>
+    <ul>
+    </div>
+  </header>
+
+  {% comment %} login page main div {% endcomment %}
+
+    <div class="login_page">
+      <div class="login_div">
+        <div class="login_heading">
+          LOGIN
+        </div>
+        <div class="login_items">
+          <form action="" method="post" class="log_form">
+            {% csrf_token %}
+
+            <div >
+              <label for="username">UserName</label><br>
+              <input class="log_fn" type="text" name="username" class="I2" placeholder="Enter your UserName">
+            </div>
+            <div >
+              <label for="password">Password</label><br>
+              <input class="log_fn" type="password" name="password" class="I2" placeholder="Enter your Password">
+            </div>
+            <div class="Login_button">
+            <button type="submit" class="log_btn">LogIn</button>
+            <button type="reset" class="log_btn">Reset</button>
+           
+           </div>
+          </form>
+          <div class="error_message" >{{error_message}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
