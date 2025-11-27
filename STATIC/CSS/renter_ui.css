@@ -267,8 +267,43 @@ footer{
 
 @media (min-width:100px) and (max-width:1200px) {
 
-  
+ .rui_heading{
+    color:white;
+    background-color: rgba(0,0,0,0.5);
+    font-family: Arial, Helvetica, sans-serif;
+    
+    border: 3px solid white;
+    border-radius: 30px;
+    height:fit-content;
+    width:90%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+   
+}
+.h_rui1{
+    
+    font-family:  'Courier New', Courier, monospace;
+    font-size: 25px;
+    text-align: center;
+}
 
+.h_rui2{
+    /* margin-top: 20px; */
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    text-align: center;
+   padding-left: 70px;
+   padding-right: 70px;
+   
+} 
+.book_issued {
+    width: 97%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    /* padding: 10px; */
+}
 
 footer{
     width: 100%;

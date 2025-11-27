@@ -77,22 +77,35 @@ def open_rental(request , book_id):
     return render(request,'rental/open_rental.html',context={'book':book})
 
 def show_rental(request):
-
+    
+  if request.method == 'GET':
     selected_books = rental.objects.all()
     return render(request,'rental/renter_ui.html',context={'renter':selected_books})
-
-def renter_list(request):
-    if request.method == 'GET':
-        return render(request,'rental/renter_ui.html')  
-    
-    elif request.method == 'POST':
+ 
+  elif request.method == 'POST':
 
         renter_id = request.POST.get("renter_id")
-        renter = get_object_or_404(renter, id=renter_id)
+        renter = rental.objects.get(id=renter_id)
         renter.is_returned = True
         renter.return_date = timezone.now().date()
         renter.save()
-        return redirect('rental/renter_ui.html')
+        return redirect('show_rental')
+  
+  return ("<h1>Something went Wrong</h1>")
 
-    renters = rental.objects.all()
-    return render(request, 'rental/renter_ui.html', {'renter': renters})
+
+# def renter_list(request):
+#     if request.method == 'GET':
+#         return render(request,'rental/renter_ui.html')  
+    
+#     elif request.method == 'POST':
+
+#         renter_id = request.POST.get("renter_id")
+#         renter = rental.objects.get(id=renter_id)
+#         renter.is_returned = True
+#         renter.return_date = timezone.now().date()
+#         renter.save()
+#         return redirect('rental/renter_ui.html')
+
+#     renters = rental.objects.all()
+#     return render(request, 'rental/renter_ui.html', {'renter': renters})
