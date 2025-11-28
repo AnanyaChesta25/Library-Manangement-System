@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/myprofile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+   <header>
+    <div class="hp_navbar">
+      <img class="hp_navimg" src="{% static 'IMAGES/logo.png' %}">
+    </div>
+    <div class="nav_items">
+      <div class="home hidenav"><a href="http://127.0.0.1:8000/newhome">Home</a></div>
+      <div class="register hidenav"><a href="http://127.0.0.1:8000/search">Search</a></div>
+      <div class="login hidenav"><a href="http://127.0.0.1:8000/show_rental/">MyBooks</a></div>
+      <div class="login hidenav"><a href="http://127.0.0.1:8000/myprofile">MyProfile</a></div>
+      <div class="menu_button" onclick= showSidebar() ><a href="#"><i class="fa-solid fa-list"></i></a></div>
+    </div>
+  </header>
+
+  <script>
+    function showSidebar(){
+      const sidebar = document.querySelector('.sidebar')
+      sidebar.style.display = 'flex'
+    }
+    function hideSidebar(){
+        const sidebar = document.querySelector('.sidebar')
+        sidebar.style.display = 'none'
+    }
+  </script>
+
+   <header class="res_nav sidebar">
+    <div class="r_navbar">
+     <p onclick=hideSidebar()> <i class="fa-solid fa-xmark"></i></p>
+    </div>
+    <div >
+     <ul class="bar"> 
+      <li class="home"><a href="http://127.0.0.1:8000/newhome">Home</a></li>
+      <li class="register"><a href="http://127.0.0.1:8000/search">Search</a></li>
+      <li class="login"><a href="http://127.0.0.1:8000/show_rental/">MyBooks</a></li>
+      <li class="login"><a href="http://127.0.0.1:8000/myprofile">MyProfile</a></li>
+    <ul>
+    </div>
+  </header>
+<!-- 
+  main profile div -->
+
+  <section>
+    <div class="myprofile_main_div">
+     <div class="div1">
+        <div class="divbox2">
+            <div class="profile_heading">
+                <h2>
+                    Every reader deserves guidance, every story deserves space, and every library moment nurtures lifelong curiosity.
+                </h2>
+            </div>
+        </div>
+        <div class="divbox3">
+            <h1 class="divbox3_h1">User Details</h1>
+            <div class="user_details">
+                    
+                    <p>Username : {{user.first_name}} {{user.last_name}}</p>
+                    <p>Role : {{user.role}}</p>
+                    <button class="profile_button">Update Profile</button>
+ 
+            </div>
+        </div>
+     </div>
+
+    </div>
+  </section>
+    
+</body>
+</html>

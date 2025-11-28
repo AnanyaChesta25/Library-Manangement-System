@@ -58,3 +58,10 @@ def login_page(request):
          
          login(request, valid)
          return redirect("home")
+      
+def myprofile_page(request):
+   
+    if not request.user.is_authenticated:
+        return redirect('login') 
+  
+    return render(request, 'user/myprofile.html', {"user":request.user})      
