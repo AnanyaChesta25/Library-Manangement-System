@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import books,book_category
 # Create your views here.
 
@@ -29,4 +29,13 @@ def home(request):
     
     book = books.objects.all()
     return render(request , 'home.html', context={"books":book})
+
+def admin_home(request):
+    
+    if request.user.is_superuser :
+      book = books.objects.all()
+      return render(request , 'Admin/admin_home.html', context={"books":book})
+    
+    else: 
+     return redirect("home")
     

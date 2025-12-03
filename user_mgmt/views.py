@@ -37,27 +37,57 @@ def register(request):
 
 def login_page(request):
 
-  if request.method == 'GET':   
-    return render(request,'user/login.html')
+  # if request.method == 'GET':   
+  #   return render(request,'user/login.html')
   
-  if request.method == 'POST':
+  # if request.method == 'POST':
      
-      data = request.POST
+  #     data = request.POST
 
-      username = data.get('username' ,'')
-      password = data.get('password','')
+  #     username = data.get('username' ,'')
+  #     password = data.get('password','')
 
-      valid = authenticate(request, username = username , password = password)
-      print(valid,"-------->>>>")
+  #     valid = authenticate(request, username = username , password = password)
+  #     print(valid,"-------->>>>")
 
-      if valid is None:
-         print("Invalid Crenditals")
-         return render(request, 'user/login.html', context={"error_message":"Invalid Crenditals.You need to register first."})
+  #     if valid is None:
+  #        print("Invalid Crenditals")
+  #        return render(request, 'user/login.html', context={"error_message":"Invalid Crenditals.You need to register first."})
 
-      else:
+  #     else:
          
-         login(request, valid)
-         return redirect("home")
+  #        login(request, valid)
+  #        return redirect("home")
+
+ 
+    if request.method == 'GET':
+        return render(request, 'user/login.html')
+
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+
+        # Authenticate user
+        user = authenticate(request, username=username, password=password)
+        print(user, "-------->>>>")
+
+        if user is None:
+            # Invalid credentials
+            print("Invalid Credentials")
+            return render(request, 'user/login.html', {
+                "error_message": "Invalid Credentials. You need to register first."
+            })
+
+        # Login successful
+        login(request, user)
+
+        # Redirect based on user type
+        if user.is_superuser:
+            # Superuser → admin dashboard
+            return redirect("admin_home")  # replace with your admin URL name
+        else:
+            # Normal user → regular home page
+            return redirect("home")
       
 def myprofile_page(request):
    
